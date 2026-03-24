@@ -1,0 +1,23 @@
+name: C++ CI - Max Element
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Install g++
+      run: sudo apt update && sudo apt install -y g++
+
+    - name: Compile code
+      run: g++ src/max_element.cpp tests/test_max.cpp -o test_app
+
+    - name: Run tests
+      run: ./test_app
